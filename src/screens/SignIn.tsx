@@ -23,33 +23,39 @@ export const SignIn = () => {
             <View style={styles.container}>
                 <Text style={{
                     ...styles.textoSignIn,
-                    color: '#01FFFF'
-                }}>TekZone</Text>
+                    color: '#00ffff'
+                }}>TecZone</Text>
 
-                {/* seccion correo electronico */}
-                <View >
+                <View style={{
+                    ...styles.container2,
+                    width: width * 0.95,
+                    height: height * 0.350
+                }}>
+                    {/* seccion correo electronico */}
+
                     <Text style={styles.textoSignIn}>Email:</Text>
                     <TextInput
                         style={{
                             ...styles.textinput,
-                            height: height * 0.06
+                            height: height * 0.06,
+                            width: width * 0.7
                         }}
                         onChangeText={onChangeEmail}
                         value={correo}
                         placeholder="user@companyname.com"
                         keyboardType="email-address"
+
                     />
-                </View>
 
+                    {/* Seccion de Password */}
 
-                {/* Seccion de Password */}
-                <View >
                     <Text style={styles.textoSignIn}>Password:</Text>
                     <View style={{ flexDirection: 'row' }}>
                         <TextInput
                             style={{
                                 ...styles.textinput,
-                                height: height * 0.06
+                                height: height * 0.06,
+                                width: width * 0.7
                             }}
                             onChangeText={onChangePassword}
                             value={password}
@@ -66,10 +72,13 @@ export const SignIn = () => {
                             onPress={() => setShowPassword(!showPassword)} // Alterna el estado
                         >
                             <Text >
-                                {showPassword ? "Mostrar" : "Ocultar"}
+                                {showPassword
+                                    ? "Ver" : "Ocultar"}
                             </Text>
                         </TouchableOpacity>
+
                     </View>
+
                 </View>
 
                 <Button
@@ -95,16 +104,23 @@ const styles = StyleSheet.create({
         justifyContent: 'space-evenly',
         flex: 1,
     },
+    container2: {
+        backgroundColor: '#fff',
+        borderRadius: 10,
+        justifyContent: 'center',
+
+
+    },
 
     textoSignIn: {
-        fontSize: 40,
-        textAlign: 'center',
-        color: '#00ff00',
-        fontWeight: 'bold'
+        fontSize: 30,
+        textAlign: 'left',
+        fontWeight: 'bold',
+        margin: 5
     },
     textinput: {
         alignItems: 'center',
-        margin: 'auto',
+        margin: 8,
         borderWidth: 1,
         padding: 10,
         backgroundColor: 'white'
