@@ -1,6 +1,6 @@
 import { CommonActions, useNavigation } from '@react-navigation/native'
 import React, { useState } from 'react'
-import { Button, StyleSheet, Text, TextInput, useWindowDimensions, View, ImageBackground, TouchableOpacity } from 'react-native'
+import { Button, StyleSheet, Text, TextInput, useWindowDimensions, View, ImageBackground, TouchableOpacity, Alert } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 export const SignIn = () => {
@@ -11,6 +11,25 @@ export const SignIn = () => {
     const { height, width } = useWindowDimensions();
     //useState para boton de amostrar o ocultar contraseña
     const [showPassword, setShowPassword] = useState(true);
+    //Funciones para validar los campos 
+    const validarCampos = () => {
+        if (!correo || !password) {
+            Alert.alert('Porfavor llene todos los campos')
+        }
+        if (password.length < 6) {
+            Alert.alert('Su contraseña debe ser de minimo 6 caracteres')
+            onChangePassword('')
+        }
+        if (correo.startsWith(' ')) {
+            Alert.alert('Correo no valido ingrese de nuevo');
+            onChangeEmail('');
+        }
+        if(!correo.includes('@')&&!correo.includes('.com')){
+            Alert.alert('Correo no valido ingrese de nuevo');
+            onChangeEmail('');
+        }
+    }
+
     return (
         <ImageBackground
             source={require('../../assets/fondoLogIn.jpg')} // Ruta de la imagen local
@@ -29,12 +48,15 @@ export const SignIn = () => {
                 <View style={{
                     ...styles.container2,
                     width: width * 0.9,
-                    height: height * 0.35,
+                    height: height * 0.40,
                     maxWidth: 425
 
                 }}>
                     {/* seccion correo electronico */}
-
+                    <Text style={{
+                        ...styles.textoSignIn,
+                        textAlign: 'center'
+                    }}>Sign-In</Text>
                     <Text style={styles.textoSignIn}>Email:</Text>
                     <TextInput
                         style={{
@@ -77,6 +99,11 @@ export const SignIn = () => {
                     </View>
 
                 </View>
+
+                <Button
+                    title='Iniciar Sesión'
+                    onPress={() => validarCampos()}
+                />
 
                 <Button
                     title='no tengo cuenta ir a registrar'
