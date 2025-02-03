@@ -28,17 +28,18 @@ export const SignIn = () => {
 
                 <View style={{
                     ...styles.container2,
-                    width: width * 0.95,
-                    height: height * 0.350
+                    width: width * 0.9,
+                    height: height * 0.35,
+                    maxWidth: 425
+
                 }}>
                     {/* seccion correo electronico */}
 
                     <Text style={styles.textoSignIn}>Email:</Text>
                     <TextInput
                         style={{
-                            ...styles.textinput,
+                            ...styles.textinput1,
                             height: height * 0.06,
-                            width: width * 0.7
                         }}
                         onChangeText={onChangeEmail}
                         value={correo}
@@ -53,9 +54,8 @@ export const SignIn = () => {
                     <View style={{ flexDirection: 'row' }}>
                         <TextInput
                             style={{
-                                ...styles.textinput,
+                                ...styles.textinput2,
                                 height: height * 0.06,
-                                width: width * 0.7
                             }}
                             onChangeText={onChangePassword}
                             value={password}
@@ -65,10 +65,7 @@ export const SignIn = () => {
                         />
                         {/* Botoncito para amostrar o ocultar contraseña */}
                         <TouchableOpacity
-                            style={{
-                                ...styles.button,
-                                height: height * 0.06
-                            }}
+                            style={styles.button}
                             onPress={() => setShowPassword(!showPassword)} // Alterna el estado
                         >
                             <Text >
@@ -97,7 +94,6 @@ const styles = StyleSheet.create({
         flex: 1,
         resizeMode: 'cover', // Ajusta la imagen al tamaño del contenedor
 
-
     },
     container: {
         alignItems: 'center',
@@ -109,7 +105,6 @@ const styles = StyleSheet.create({
         borderRadius: 10,
         justifyContent: 'center',
 
-
     },
 
     textoSignIn: {
@@ -118,18 +113,32 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
         margin: 5
     },
-    textinput: {
+    textinput1: {
         alignItems: 'center',
         margin: 8,
         borderWidth: 1,
         padding: 10,
-        backgroundColor: 'white'
+        backgroundColor: 'white',
+        width: '95%'
+    },
+    textinput2: {
+        alignItems: 'center',
+        margin: 8,
+        borderWidth: 1,
+        padding: 10,
+        backgroundColor: 'white',
+        width: '70%',
+        alignSelf: 'center'
     },
     button: {
         padding: 10,
         backgroundColor: '#ddd',
         borderRadius: 5,
         alignContent: 'center',
+        justifyContent: 'center',
         margin: 'auto',
+        height: 'auto',
+        width: 'auto'
     }
 })
+
