@@ -34,7 +34,10 @@ export const StackNavigator = () => {
   return (
     <Stack.Navigator >
       <Stack.Screen name="SignIn"
-        children={() => <SignIn users={usersManager} />} />
+      options={{headerShown:false}}
+        children={() => <SignIn users={usersManager} 
+        />} />
+
       <Stack.Screen name="SignUp" component={SignUp} />
 
       <Stack.Screen name="Home" component={Home} />
