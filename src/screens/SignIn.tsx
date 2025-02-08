@@ -26,7 +26,7 @@ export const SignIn = ({ users }: Props) => {
     //Obtener la resolucion de la pantalla
     const { height, width } = useWindowDimensions();
     //useState para boton de amostrar o ocultar contraseña
-    const [showPassword, setShowPassword] = useState(true);
+    const [ocultar, setOcultar] = useState(true);
 
     //Funcion oara manejo de cambio en los formularios
     const handleChange = (name: string, value: string): void => {
@@ -41,33 +41,33 @@ export const SignIn = ({ users }: Props) => {
         return usuarioExist;
     }
 
-    //Funciones para validar los campos 
-    const validarCampos = (): void => {
+    //Funciones para iniciar sesion
+    const loginUser = (): void => {
+        //validaciones por cada input
         if (singInForm.email === '' && singInForm.password === '') {
             Alert.alert('Porfavor llene todos los campos')
-            return
+            return;
         }
 
-         if (singInForm.password.length > 6) {
-             Alert.alert('Su contraseña debe ser de minimo 6 caracteres')
-             return
-         }
-         if (singInForm.email.includes('@') && singInForm.email.includes('.com')) {
-             Alert.alert('Correo no valido ingrese de nuevo');
-             return
-         }
+        if (singInForm.password.length < 6) {
+            Alert.alert('Su contraseña debe ser de minimo 6 caracteres')
+            return;
+        }
+        if (!singInForm.email.includes('@') && !singInForm.email.includes('.com')) {
+            Alert.alert('Correo no valido ingrese de nuevo');
+            return;
+        }
         //verificar si usuaro no existe
         if (!verificarUser()) {
             Alert.alert('Error', 'Usuario y/o contraseña incorrectos')
-            return
+            return;
         }
-
 
         //Navegacion
         navigation.dispatch(CommonActions.navigate({ name: 'Home' }))
         console.log(singInForm);
-
     }
+
 
     return (
         <ImageBackground
@@ -120,15 +120,15 @@ export const SignIn = ({ users }: Props) => {
                             onChangeText={(value) => handleChange('password', value)}
                             placeholder="************"
                             keyboardType="default"
-                            //secureTextEntry={showPassword} /* esta propiedad cifra mi contraseña para q no se vea en el text input*/
+                            secureTextEntry={ocultar} /* esta propiedad cifra mi contraseña para q no se vea en el text input*/
                         />
                         {/* Botoncito para amostrar o ocultar contraseña */}
                         <TouchableOpacity
                             style={styles.button}
-                            onPress={() => setShowPassword(!showPassword)} // Alterna el estado
+                            onPress={() => setOcultar(!ocultar)} // Alterna el estado
                         >
                             <Text >
-                                {showPassword
+                                {ocultar
                                     ? "Ver" : "Ocultar"}
                             </Text>
                         </TouchableOpacity>
@@ -139,7 +139,7 @@ export const SignIn = ({ users }: Props) => {
 
                 <Button
                     title='Iniciar Sesión'
-                    onPress={validarCampos}
+                    onPress={loginUser}
 
                 />
 

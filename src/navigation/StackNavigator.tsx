@@ -14,7 +14,7 @@ export interface User {
 
 //Usuarios de prueba
 const users: User[] = [
-  { id: 1, name: 'luis', email: 'Luis@gmail.com', password: 'lu12345' },
+  { id: 1, name: 'luis', email: 'luis@gmail.com', password: 'lu12345' },
   { id: 1, name: 'alisson', email: 'alisson@gmail.com', password: 'al12345' },
   { id: 1, name: 'chris', email: 'chris@gmail.com', password: 'ch12345' }
 ]
