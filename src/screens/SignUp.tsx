@@ -23,7 +23,6 @@ interface RegisterForm {
 }
 
 export const SignUp = ({ users, addUsers }: Props) => {
-    const { width } = useWindowDimensions();
     const [registerForm, setregisterForm] = useState<RegisterForm>({
         username: '',
         email: '',

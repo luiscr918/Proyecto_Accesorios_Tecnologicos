@@ -1,9 +1,10 @@
 import { CommonActions, useNavigation } from '@react-navigation/native'
 import React, { useState } from 'react'
-import { Button, StyleSheet, Text, TextInput, useWindowDimensions, View, ImageBackground, TouchableOpacity, Alert } from 'react-native'
+import { Button, StyleSheet, Text, TextInput, useWindowDimensions, View, ImageBackground, TouchableOpacity, Alert, StatusBar } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { User } from '../navigation/StackNavigator';
 import { styles } from '../theme/estilos';
+import { TitleComponents } from '../components/TitleComponents';
 
 //interface para props usuario
 interface Props {
@@ -71,19 +72,18 @@ export const SignIn = ({ users }: Props) => {
 
 
     return (
+        <SafeAreaView style={{flex:1}}>
         <ImageBackground
-            source={require('../../assets/fondoLogIn.jpg')} // Ruta de la imagen local
+            source={{uri:'https://i.pinimg.com/736x/19/bd/f8/19bdf897060a4d33e62448eb52488ef3.jpg'}} // Ruta de la imagen local
             style={{
                 ...styles.background1,
                 height: height,
                 width: width
             }}
         >
+            <TitleComponents title='Welcome To TecZone' />
             <View style={styles.container1}>
-                <Text style={{
-                    ...styles.textoSignIn,
-                    color: '#00ffff'
-                }}>TecZone</Text>
+            
 
                 <View style={{
                     ...styles.container2,
@@ -96,7 +96,6 @@ export const SignIn = ({ users }: Props) => {
                         ...styles.textoSignIn,
                         textAlign: 'center'
                     }}>Sign-In</Text>
-                    <Text style={styles.textoSignIn}>Email:</Text>
                     <TextInput
                         style={{
                             ...styles.textinput1,
@@ -107,10 +106,7 @@ export const SignIn = ({ users }: Props) => {
                         keyboardType="email-address"
 
                     />
-
-
-                    <Text style={styles.textoSignIn}>Password:</Text>
-                    <View style={{ flexDirection: 'row' }}>
+                    <View >
                         <TextInput
                             style={{
                                 ...styles.textinput2,
@@ -151,6 +147,7 @@ export const SignIn = ({ users }: Props) => {
 
             </View>
         </ImageBackground>
+        </SafeAreaView>
     )
 }
 
