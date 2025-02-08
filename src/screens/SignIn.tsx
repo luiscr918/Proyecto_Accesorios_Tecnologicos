@@ -3,6 +3,7 @@ import React, { useState } from 'react'
 import { Button, StyleSheet, Text, TextInput, useWindowDimensions, View, ImageBackground, TouchableOpacity, Alert } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { User } from '../navigation/StackNavigator';
+import { styles } from '../theme/estilos';
 
 //interface para props usuario
 interface Props {
@@ -73,12 +74,12 @@ export const SignIn = ({ users }: Props) => {
         <ImageBackground
             source={require('../../assets/fondoLogIn.jpg')} // Ruta de la imagen local
             style={{
-                ...styles.background,
+                ...styles.background1,
                 height: height,
                 width: width
             }}
         >
-            <View style={styles.container}>
+            <View style={styles.container1}>
                 <Text style={{
                     ...styles.textoSignIn,
                     color: '#00ffff'
@@ -91,7 +92,6 @@ export const SignIn = ({ users }: Props) => {
                     maxWidth: 425
 
                 }}>
-                    {/* seccion correo electronico */}
                     <Text style={{
                         ...styles.textoSignIn,
                         textAlign: 'center'
@@ -108,7 +108,6 @@ export const SignIn = ({ users }: Props) => {
 
                     />
 
-                    {/* Seccion de Password */}
 
                     <Text style={styles.textoSignIn}>Password:</Text>
                     <View style={{ flexDirection: 'row' }}>
@@ -154,56 +153,5 @@ export const SignIn = ({ users }: Props) => {
         </ImageBackground>
     )
 }
-const styles = StyleSheet.create({
-    background: {
-        flex: 1,
-        resizeMode: 'cover', // Ajusta la imagen al tamaño del contenedor
 
-    },
-    container: {
-        alignItems: 'center',
-        justifyContent: 'space-evenly',
-        flex: 1,
-    },
-    container2: {
-        backgroundColor: '#fff',
-        borderRadius: 10,
-        justifyContent: 'center',
-
-    },
-
-    textoSignIn: {
-        fontSize: 30,
-        textAlign: 'left',
-        fontWeight: 'bold',
-        margin: 5
-    },
-    textinput1: {
-        alignItems: 'center',
-        margin: 8,
-        borderWidth: 1,
-        padding: 10,
-        backgroundColor: 'white',
-        width: '95%'
-    },
-    textinput2: {
-        alignItems: 'center',
-        margin: 8,
-        borderWidth: 1,
-        padding: 10,
-        backgroundColor: 'white',
-        width: '70%',
-        alignSelf: 'center'
-    },
-    button: {
-        padding: 10,
-        backgroundColor: '#ddd',
-        borderRadius: 5,
-        alignContent: 'center',
-        justifyContent: 'center',
-        margin: 'auto',
-        height: 'auto',
-        width: 'auto'
-    }
-})
-
+    

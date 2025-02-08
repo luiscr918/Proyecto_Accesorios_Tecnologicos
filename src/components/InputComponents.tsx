@@ -1,35 +1,28 @@
-/* import React from 'react'
-import { KeyboardTypeOptions, useWindowDimensions } from 'react-native'
-import { TextInput } from 'react-native-gesture-handler'
-import { styles } from '../screens/SignIn'
+import React from 'react'
+import { KeyboardTypeOptions, TextInput } from 'react-native'
+import { styles } from '../theme/estilos';
 
-interface Props{
+
+interface Props {
     placeholder: string,
-    keyboardType: KeyboardTypeOptions,
-    handleChange: (name: string, value: string) => void,
-    name: string,
-    showPassword?:boolean,
-    onChangeText: string,
-    onChangeEmail: string,
-    value: string
+    keyboardType: KeyboardTypeOptions;
+    handleChange: (name: string, value: string) => void;
+    name: string;
+    isPassword?: boolean;
+    maxLength?: number;
 }
 
-export const InputComponent = ({handleChange,name, showPassword, placeholder, keyboardType } : Props) => {
-    const { height, width } = useWindowDimensions();
-
+export const InputComponent = ({ placeholder, keyboardType , handleChange, name, isPassword=false}: Props) => {
     return (
         <TextInput
-        style={{
-            ...styles.textinput2,
-            height: height * 0.06,
-        }}
-        onChangeText={(value) => handleChange(name, value)}
-        placeholder={placeholder}
-        keyboardType={keyboardType}
-        secureTextEntry={showPassword}
+            placeholder={placeholder}
+            keyboardType={keyboardType}
+            onChangeText={(value) => handleChange(name, value)}
+            secureTextEntry={isPassword}
+            style={styles.inputText}>
+            
+        </TextInput>
 
 
-        />
     )
 }
- */
