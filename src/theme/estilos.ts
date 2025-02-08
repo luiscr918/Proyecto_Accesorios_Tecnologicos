@@ -1,4 +1,4 @@
-import { StyleSheet, ImageBackground } from 'react-native';
+import { StyleSheet, ImageBackground } from "react-native";
 
 export const styles = StyleSheet.create({
   background: {
@@ -33,9 +33,8 @@ export const styles = StyleSheet.create({
 
   textoSignIn: {
     fontSize: 30,
-    textAlign: "left",
-    fontWeight: "bold",
     margin: 5,
+    textAlign: "center",
   },
   textinput1: {
     alignItems: "center",
@@ -66,7 +65,7 @@ export const styles = StyleSheet.create({
     width: "auto",
   },
   inputTextSignUp: {
-    backgroundColor: "#D1F8EF",
+    backgroundColor: "#f1f4f5",
     maxWidth: 400,
     padding: 15,
     borderRadius: 10,
@@ -74,7 +73,7 @@ export const styles = StyleSheet.create({
     elevation: 3,
   },
   body: {
-    backgroundColor: "#9ACBD0",
+    backgroundColor: "white",
     borderTopLeftRadius: 30,
     borderTopRightRadius: 35,
     paddingTop: 40,
@@ -94,6 +93,7 @@ export const styles = StyleSheet.create({
     paddingVertical: 30,
     backgroundColor: "#D1F8EF",
     textAlign: "left",
+    justifyContent: "center",
   },
   containerForm: {
     marginBottom: 10,
@@ -105,7 +105,7 @@ export const styles = StyleSheet.create({
     alignSelf: "center",
   },
   buttomForm: {
-    backgroundColor: "#578FCA",
+    backgroundColor: "#D0F3F7",
     paddingVertical: 10,
     paddingHorizontal: 10,
     alignItems: "center",
@@ -113,16 +113,21 @@ export const styles = StyleSheet.create({
     elevation: 3,
     width: "95%",
     maxWidth: 400,
-    margin: 5,
+    margin: 10,
     cursor: "pointer",
   },
   register: {
     alignSelf: "center",
     color: "grey",
     fontWeight: "condensed",
-    margin: 5,
+    margin: 10,
   },
   sub: {
     textDecorationLine: "underline",
+  },
+  iconPassword: {
+    position: "absolute",
+    right: 20,
+    bottom: 25,
   },
 });
