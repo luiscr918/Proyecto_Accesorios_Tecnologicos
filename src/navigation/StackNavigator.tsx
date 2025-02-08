@@ -42,3 +42,4 @@ const [usersManager, setUsersManager] = useState<User[]>(users)
     </Stack.Navigator>
   );
 }
+
