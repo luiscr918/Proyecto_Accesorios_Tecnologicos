@@ -1,139 +1,159 @@
 import React, { useState } from 'react';
-import {
-    View,
-    Text,
-    TextInput,
-    Button,
-    StyleSheet,
-    Alert,
-    KeyboardAvoidingView,
-    ScrollView,
-    SafeAreaView,
-    useWindowDimensions,
-    ImageBackground
-} from 'react-native';
+import { View, Text, Alert, KeyboardAvoidingView, ScrollView, useWindowDimensions, StatusBar, TouchableOpacity } from 'react-native';
+import { styles } from '../theme/estilos';
+import { User } from '../navigation/StackNavigator';
+import { InputComponent } from '../components/InputComponents';
+import { BodyComponents } from '../components/BodyComponents';
+import { TitleComponents } from '../components/TitleComponents';
+import { ButtonComponent } from '../components/ButtonComponent';
+import { CommonActions, useNavigation } from '@react-navigation/native';
 
-export const SignUp: React.FC = () => {
-    const { width,height } = useWindowDimensions();
-    const [username, setUsername] = useState('');
-    const [email, setEmail] = useState('');
-    const [phoneNumber, setPhoneNumber] = useState('');
-    const [password, setPassword] = useState('');
+interface Props {
+    users: User[];
+    addUsers: (user: User) => void;
+}
+
+interface RegisterForm {
+    username: string;
+    email: string;
+    password: string;
+    phoneNumber: string;
+    confPassword: string;
+}
+
+export const SignUp = ({ users, addUsers }: Props) => {
+    const { width } = useWindowDimensions();
+    const [registerForm, setregisterForm] = useState<RegisterForm>({
+        username: '',
+        email: '',
+        password: '',
+        phoneNumber: '',
+        confPassword: ''
+    });
+    const [hiddenPasword, setHiddenPassword] = useState<boolean>(true);
+    const navigation = useNavigation();
+
+    const handleChange = (name: string, value: string) => {
+        setregisterForm({
+            ...registerForm,
+            [name]: value
+        });
+    }
+
+    const verifyUser = (): User | undefined => {
+        const existUser = users.find(user => user.email === registerForm.email);
+        return existUser
+    }
+
+    const getIdNewUser = (): number => {
+        const getIdUser = users.map(user => user.id);
+        return Math.max(...getIdUser) + 1;
+    }
 
     const handleRegister = () => {
-        if (!username || !email || !phoneNumber || !password) {
+        if (!registerForm.username ||
+            !registerForm.email ||
+            !registerForm.phoneNumber ||
+            !registerForm.password ||
+            !registerForm.confPassword) {
             Alert.alert('Error', 'Por favor llena todos los campos.');
             return;
         }
 
-        if (!email.endsWith('@gmail.com')) {
+        if (verifyUser()) {
+            Alert.alert('Error', 'El usuario ya existe');
+            return;
+        }
+
+        if (!registerForm.email.endsWith('@gmail.com')) {
             Alert.alert('El correo electrónico debe ser una dirección de Gmail.');
             return;
         }
 
-        if (phoneNumber.length !== 10) {
+        if (registerForm.phoneNumber.length !== 10) {
             Alert.alert('El número de teléfono debe tener 10 dígitos.');
             return;
         }
 
-        console.log('Datos de registro:', { username, email, phoneNumber, password });
+        if (registerForm.password !== registerForm.confPassword) {
+            Alert.alert('Error', 'Las contraseñas no coinciden.');
+            return;
+        }
+
+        const newUser: User = {
+            id: getIdNewUser(),
+            name: registerForm.username,
+            email: registerForm.email,
+            password: registerForm.password,
+            confPassword: registerForm.confPassword
+        };
+
+        addUsers(newUser);
+        Alert.alert('Registro', 'Usuario registrado con éxito');
+        navigation.goBack();
     };
-    
+
     return (
-        <ImageBackground source={require('../../assets/fondoSignUp.jpeg')}
-        style={{
-            ...styles.background,
-            height: height,
-            width: width
-        }}
-        >
-            
-                <KeyboardAvoidingView behavior="height" >
+        <View>
+            <StatusBar />
+            <TitleComponents title='TecZone' />
+            <BodyComponents>
+                <Text style={styles.titlePrincipal}>
+                    Estas muy cerca, continúa.
+                </Text>
+                <Text style={styles.titleDescrption}>
+                    Realiza tus compras de manera rápida y segura
+                </Text>
+                <KeyboardAvoidingView behavior="height">
                     <ScrollView
-                        contentContainerStyle={styles.scrollContainer}
+                        contentContainerStyle={styles.container}
                         keyboardShouldPersistTaps="handled"
                     >
-                        <View style={[styles.form, { width: width * 0.9, maxWidth: 400, alignSelf: 'center' }]}>
-                            <Text style={styles.title}>Registro</Text>
-                            <TextInput
-                                style={styles.input}
-                                placeholder="Nombre de usuario"
-                                value={username}
-                                onChangeText={setUsername}
-                                autoCapitalize="none"
+                        <View style={[styles.containerForm, { width: width * 0.9, maxWidth: 400, alignSelf: 'center' }]}>
+                            <InputComponent
+                                placeholder='Nombre'
+                                keyboardType='default'
+                                handleChange={handleChange}
+                                name='username'
                             />
-                            <TextInput
-                                style={styles.input}
+                            <InputComponent
                                 placeholder="Correo electrónico"
                                 keyboardType="email-address"
-                                value={email}
-                                onChangeText={setEmail}
-                                autoCapitalize="none"
+                                name='email'
+                                handleChange={handleChange}
                             />
-                            <TextInput
-                                style={styles.input}
+                            <InputComponent
                                 placeholder="Número de teléfono"
                                 keyboardType="phone-pad"
-                                value={phoneNumber}
-                                onChangeText={setPhoneNumber}
+                                handleChange={handleChange}
                                 maxLength={10}
+                                name='phoneNumber'
                             />
-                            <TextInput
-                                style={styles.input}
+                            <InputComponent
                                 placeholder="Contraseña"
-                                secureTextEntry
-                                value={password}
-                                onChangeText={setPassword}
+                                keyboardType='default'
+                                handleChange={handleChange}
+                                isPassword={hiddenPasword}
+                                name='password'
                             />
-                            <Button title="Registrar" onPress={handleRegister} />
+                            <InputComponent
+                                placeholder="Confirma contraseña"
+                                keyboardType='default'
+                                handleChange={handleChange}
+                                isPassword={hiddenPasword}
+                                name='confPassword'
+                            />
+                            <ButtonComponent title='Registrar' handleSendInfor={handleRegister} />
+                            <TouchableOpacity style={styles.register} onPress={() => navigation.dispatch(CommonActions.navigate({ name: 'SignIn' }))}>
+                                <Text style={styles.sub}>¿Ya tienes una cuenta? Inicia Sesión aquí</Text>
+                            </TouchableOpacity>
                         </View>
                     </ScrollView>
                 </KeyboardAvoidingView>
-        </ImageBackground>
-
+            </BodyComponents>
+        </View>
     );
 };
 
-const styles = StyleSheet.create({
-    background: {
-        flex: 1,
-        resizeMode: 'cover', // Ajusta la imagen al tamaño del contenedor
 
-
-    },
-    scrollContainer: {
-
-        justifyContent: 'center',
-        alignItems: 'center',
-        paddingVertical: 20,
-    },
-    form: {
-        flexDirection: 'column',
-        alignItems: 'center',
-        padding: 20,
-        backgroundColor: '#f9f9f9',
-        borderRadius: 10,
-        shadowColor: '#000',
-        shadowOffset: { width: 0, height: 2 },
-        shadowOpacity: 0.2,
-        shadowRadius: 4,
-        elevation: 5,
-    },
-    title: {
-        fontSize: 24,
-        fontWeight: 'bold',
-        textAlign: 'center',
-        marginBottom: 20,
-    },
-    input: {
-        width: '100%',
-        height: 45,
-        borderWidth: 1,
-        borderColor: '#ccc',
-        borderRadius: 5,
-        paddingHorizontal: 10,
-        marginBottom: 15,
-        backgroundColor: '#fff',
-    },
-});
 

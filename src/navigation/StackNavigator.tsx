@@ -9,38 +9,37 @@ export interface User {
   id: number,
   name: string,
   email: string,
-  password: string
+  password: string,
+  confPassword: string
 }
 
 //Usuarios de prueba
 const users: User[] = [
-  { id: 1, name: 'luis', email: 'luis@gmail.com', password: 'lu12345' },
-  { id: 1, name: 'alisson', email: 'alisson@gmail.com', password: 'al12345' },
-  { id: 1, name: 'chris', email: 'chris@gmail.com', password: 'ch12345' }
+  { id: 1, name: 'luis', email: 'luis@gmail.com', password: 'lu12345', confPassword:'lu1234' },
+  { id: 1, name: 'alisson', email: 'alisson@gmail.com', password: 'al12345', confPassword:'al12345' },
+  { id: 1, name: 'chris', email: 'chris@gmail.com', password: 'ch12345', confPassword:'ch12345' }
 ]
 
 const Stack = createStackNavigator();
 
 export const StackNavigator = () => {
-
-  //hook que permite controlar el estado de los usuarios
-  const [usersManager, setUserManager] = useState<User[]>(users);
-
-  /* //funcion agreagr usuarios al userManger
-  const agregarUsers = (user: User): void => {
-    setUserManager([...usersManager, user])
-  } */
-
+  const addUsers=(user: User): void =>{
+    //Agregar nuevos usuarios al usersManager
+    setUsersManager([...usersManager, user])
+}
+//hook useState: permite controlar el estado de los usuarios 
+const [usersManager, setUsersManager] = useState<User[]>(users)
+  
   return (
     <Stack.Navigator >
       <Stack.Screen name="SignIn"
-      options={{headerShown:false}}
-        children={() => <SignIn users={usersManager} 
-        />} />
-
-      <Stack.Screen name="SignUp" component={SignUp} />
+        children={() => <SignIn users={usersManager} />} />
+      <Stack.Screen name="SignUp"
+                options={{ headerShown: false }}
+                children={()=><SignUp users ={usersManager} addUsers={addUsers}/>} />
 
       <Stack.Screen name="Home" component={Home} />
     </Stack.Navigator>
   );
 }
+
