@@ -34,6 +34,7 @@ const [usersManager, setUsersManager] = useState<User[]>(users)
   return (
     <Stack.Navigator >
       <Stack.Screen name="SignIn"
+      options={{ headerShown: false }}
         children={() => <SignIn users={usersManager} />} />
       <Stack.Screen name="SignUp"
                 options={{ headerShown: false }}

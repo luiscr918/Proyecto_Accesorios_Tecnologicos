@@ -7,6 +7,7 @@ import { BodyComponents } from '../components/BodyComponents';
 import { TitleComponents } from '../components/TitleComponents';
 import { ButtonComponent } from '../components/ButtonComponent';
 import { CommonActions, useNavigation } from '@react-navigation/native';
+import {SafeAreaView} from 'react-native-safe-area-context';
 
 interface Props {
     users: User[];
@@ -96,7 +97,7 @@ export const SignUp = ({ users, addUsers }: Props) => {
     };
 
     return (
-        <View>
+        <SafeAreaView>
             <StatusBar />
             <TitleComponents title='TecZone' />
             <BodyComponents>
@@ -111,7 +112,7 @@ export const SignUp = ({ users, addUsers }: Props) => {
                         contentContainerStyle={styles.container}
                         keyboardShouldPersistTaps="handled"
                     >
-                        <View style={[styles.containerForm, { width: width * 0.9, maxWidth: 400, alignSelf: 'center' }]}>
+                        <View style={styles.containerForm}>
                             <InputComponent
                                 placeholder='Nombre'
                                 keyboardType='default'
@@ -145,15 +146,15 @@ export const SignUp = ({ users, addUsers }: Props) => {
                                 isPassword={hiddenPasword}
                                 name='confPassword'
                             />
-                            <ButtonComponent title='Registrar' handleSendInfor={handleRegister} />
-                            <TouchableOpacity style={styles.register} onPress={() => navigation.dispatch(CommonActions.navigate({ name: 'SignIn' }))}>
-                                <Text style={styles.sub}>¿Ya tienes una cuenta? Inicia Sesión aquí</Text>
-                            </TouchableOpacity>
                         </View>
+                        <ButtonComponent title='Registrar' handleSendInfor={handleRegister} />
+                        <TouchableOpacity style={styles.register} onPress={() => navigation.dispatch(CommonActions.navigate({ name: 'SignIn' }))}>
+                            <Text style={styles.sub}>¿Ya tienes una cuenta? Inicia Sesión aquí</Text>
+                        </TouchableOpacity>
                     </ScrollView>
                 </KeyboardAvoidingView>
             </BodyComponents>
-        </View>
+        </SafeAreaView>
     );
 };
 

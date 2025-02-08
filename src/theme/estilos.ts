@@ -66,11 +66,12 @@ import { StyleSheet } from "react-native";
         height: 'auto',
         width: 'auto'
     },
-    inputText: {
+    inputTextSignUp: {
         backgroundColor: '#D1F8EF',
-        width: '95%',
+        maxWidth:400,
+        padding:15,
         borderRadius: 10,
-        margin: 5,
+        margin: 7,
         elevation: 3,
     },
     body: {
@@ -97,10 +98,7 @@ import { StyleSheet } from "react-native";
         textAlign:'center'
     },
     containerForm: {
-        marginVertical: 20,
-        justifyContent: 'center',
-        alignItems: 'center',
-        paddingVertical: 20,
+        marginBottom:10
     },
     titleDescrption: {
         fontSize: 15,
@@ -114,8 +112,9 @@ import { StyleSheet } from "react-native";
         paddingHorizontal: 10,
         alignItems: 'center',
         borderRadius: 10,
-        elevation: 2,
+        elevation: 3,
         width: '95%',
+        maxWidth:400,
         margin: 5,
         cursor:'pointer'
     },
@@ -127,6 +126,18 @@ import { StyleSheet } from "react-native";
     },
     sub:{
         textDecorationLine:'underline'
+    },
+    backgroundImage:{
+        position: 'absolute',
+    top: 0,
+    left: 0,
+    bottom: 0,
+    right: 0,
+    },
+    containerMainSignIn:{
+        flex: 1,
+    position: 'relative',
     }
+
 
 });
