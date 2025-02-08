@@ -17,8 +17,7 @@ export const TitleComponents = ({ title }: Props) => {
                 ...styles.title1,
                 height: height * 0.12,
                 width: width,
-                backgroundColor: 'rgba(255, 255, 255, 0)',
-                color: '#e2c15c'
+                textAlign: 'center'
             })
             : ({
                 ...styles.title1,

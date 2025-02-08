@@ -26,8 +26,8 @@ export const styles = StyleSheet.create({
     flex: 1,
   },
   container2: {
-    backgroundColor: "rgba(255, 255, 255, 0.7)",
-    borderRadius: 10,
+    backgroundColor: "white",
+    borderRadius: 15,
     justifyContent: "center",
   },
 
@@ -39,20 +39,20 @@ export const styles = StyleSheet.create({
   textinput1: {
     alignItems: "center",
     margin: 15,
-    borderWidth: 1,
     padding: 10,
-    backgroundColor: "white",
+    backgroundColor: "#f1f4f5",
     width: "95%",
     alignSelf: "center",
+    borderRadius: 10,
   },
   textinput2: {
     alignItems: "center",
     margin: 15,
-    borderWidth: 1,
     padding: 10,
-    backgroundColor: "white",
+    backgroundColor: "#f1f4f5",
     width: "95%",
     alignSelf: "center",
+    borderRadius: 10,
   },
   button: {
     padding: 10,

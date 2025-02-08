@@ -6,6 +6,7 @@ import { User } from '../navigation/StackNavigator';
 import { styles } from '../theme/estilos';
 import { TitleComponents } from '../components/TitleComponents';
 import Icon from 'react-native-vector-icons/MaterialIcons';
+import { ButtonComponent } from '../components/ButtonComponent';
 
 //interface para props usuario
 interface Props {
@@ -89,7 +90,7 @@ export const SignIn = ({ users }: Props) => {
                     <View style={{
                         ...styles.container2,
                         width: width * 0.9,
-                        height: height * 0.35,
+                        height: height * 0.38,
                         maxWidth: 425
 
                     }}>
@@ -97,17 +98,18 @@ export const SignIn = ({ users }: Props) => {
                             ...styles.textoSignIn,
                             textAlign: 'center'
                         }}>Sign In</Text>
-                        <TextInput
-                            style={{
-                                ...styles.textinput1,
-                                height: height * 0.06,
-                            }}
-                            onChangeText={(value) => handleChange('email', value)}
-                            placeholder="E-mail"
-                            keyboardType="email-address"
+                        <View>
+                            <TextInput
+                                style={{
+                                    ...styles.textinput1,
+                                    height: height * 0.06,
+                                }}
+                                onChangeText={(value) => handleChange('email', value)}
+                                placeholder="E-mail"
+                                keyboardType="email-address"
 
-                        />
-                        <View >
+                            />
+
                             <TextInput
                                 style={{
                                     ...styles.textinput2,
@@ -129,24 +131,17 @@ export const SignIn = ({ users }: Props) => {
                                 onPress={() => setOcultar(!ocultar)}
                                 style={styles.iconPassword}
                             />
-
-
                         </View>
-
+                        <ButtonComponent title='Iniciar Sesion' handleSendInfor={loginUser} />
                     </View>
-
-                    <Button
-                        title='Iniciar Sesión'
-                        onPress={loginUser}
-
-                    />
                     <TouchableOpacity
                         onPress={() => navigation.dispatch(CommonActions.navigate({ name: 'SignUp' }))}
                     >
-                        <Text style={{...styles.sub,
-                            color:'white',
-                            fontSize:18,
-                            fontWeight:'bold'
+                        <Text style={{
+                            ...styles.sub,
+                            color: 'white',
+                            fontSize: 18,
+                            fontWeight: 'bold',
                         }}>No tienes una cuenta? Regístrate aquí</Text>
                     </TouchableOpacity>
 

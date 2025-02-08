@@ -7,7 +7,7 @@ import { BodyComponents } from '../components/BodyComponents';
 import { TitleComponents } from '../components/TitleComponents';
 import { ButtonComponent } from '../components/ButtonComponent';
 import { CommonActions, useNavigation } from '@react-navigation/native';
-import {SafeAreaView} from 'react-native-safe-area-context';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 interface Props {
     users: User[];
@@ -74,6 +74,10 @@ export const SignUp = ({ users, addUsers }: Props) => {
             Alert.alert('El número de teléfono debe tener 10 dígitos.');
             return;
         }
+        if (registerForm.password.length<6&& registerForm.confPassword.length<6) {
+            Alert.alert('Error', 'La contraseña debe contener mas de 6 digitos.');
+            return;
+        }
 
         if (registerForm.password !== registerForm.confPassword) {
             Alert.alert('Error', 'Las contraseñas no coinciden.');
@@ -135,14 +139,12 @@ export const SignUp = ({ users, addUsers }: Props) => {
                                 placeholder="Contraseña"
                                 keyboardType='default'
                                 handleChange={handleChange}
-                                isPassword={hiddenPasword}
                                 name='password'
                             />
                             <InputComponent
                                 placeholder="Confirma contraseña"
                                 keyboardType='default'
                                 handleChange={handleChange}
-                                isPassword={hiddenPasword}
                                 name='confPassword'
                             />
                         </View>
