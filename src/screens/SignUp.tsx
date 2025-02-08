@@ -105,10 +105,10 @@ export const SignUp = ({ users, addUsers }: Props) => {
             <TitleComponents title='TecZone' />
             <BodyComponents>
                 <Text style={styles.titlePrincipal}>
-                    Estas muy cerca, continúa.
+                    Se parte de nostros
                 </Text>
                 <Text style={styles.titleDescrption}>
-                    Realiza tus compras de manera rápida y segura
+                    Realiza tus compras de manera rápida y segura en la mejor tienda de tecnología.
                 </Text>
                 <KeyboardAvoidingView behavior="height">
                     <ScrollView
