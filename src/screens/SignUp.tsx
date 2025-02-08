@@ -16,8 +16,8 @@ interface Props {
 interface RegisterForm {
     username: string;
     email: string;
-    password: string;
     phoneNumber: string;
+    password: string;
     confPassword: string;
 }
 
@@ -26,8 +26,8 @@ export const SignUp = ({ users, addUsers }: Props) => {
     const [registerForm, setregisterForm] = useState<RegisterForm>({
         username: '',
         email: '',
-        password: '',
         phoneNumber: '',
+        password: '',
         confPassword: ''
     });
     const [hiddenPasword, setHiddenPassword] = useState<boolean>(true);
@@ -84,12 +84,14 @@ export const SignUp = ({ users, addUsers }: Props) => {
             id: getIdNewUser(),
             name: registerForm.username,
             email: registerForm.email,
+            phoneNumber: registerForm.phoneNumber,
             password: registerForm.password,
             confPassword: registerForm.confPassword
         };
 
         addUsers(newUser);
         Alert.alert('Registro', 'Usuario registrado con éxito');
+        console.log(newUser);
         navigation.goBack();
     };
 

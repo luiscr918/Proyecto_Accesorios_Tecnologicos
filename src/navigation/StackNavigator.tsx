@@ -9,15 +9,16 @@ export interface User {
   id: number,
   name: string,
   email: string,
+  phoneNumber: string;
   password: string,
   confPassword: string
 }
 
 //Usuarios de prueba
 const users: User[] = [
-  { id: 1, name: 'luis', email: 'luis@gmail.com', password: 'lu12345', confPassword:'lu1234' },
-  { id: 1, name: 'alisson', email: 'alisson@gmail.com', password: 'al12345', confPassword:'al12345' },
-  { id: 1, name: 'chris', email: 'chris@gmail.com', password: 'ch12345', confPassword:'ch12345' }
+  { id: 1, name: 'luis', email: 'luis@gmail.com', phoneNumber:'0999456321', password: 'lu12345', confPassword:'lu1234' },
+  { id: 1, name: 'alisson', email: 'alisson@gmail.com', phoneNumber:'0989458621',  password: 'al12345', confPassword:'al12345' },
+  { id: 1, name: 'chris', email: 'chris@gmail.com', phoneNumber:'0963454521',  password: 'ch12345', confPassword:'ch12345' }
 ]
 
 const Stack = createStackNavigator();
