@@ -1,4 +1,5 @@
 import { StyleSheet, ImageBackground } from "react-native";
+import { BUTTON_COLOR, PRIMARY_COLOR, SECONDARY_COLOR, TERTARY_COLOR } from "./defaultColors";
 
 export const styles = StyleSheet.create({
   background: {
@@ -26,7 +27,7 @@ export const styles = StyleSheet.create({
     flex: 1,
   },
   container2: {
-    backgroundColor: "white",
+    backgroundColor: SECONDARY_COLOR,
     borderRadius: 15,
     justifyContent: "center",
   },
@@ -73,7 +74,7 @@ export const styles = StyleSheet.create({
     elevation: 3,
   },
   body: {
-    backgroundColor: "white",
+    backgroundColor: SECONDARY_COLOR,
     borderTopLeftRadius: 30,
     borderTopRightRadius: 35,
     paddingTop: 40,
@@ -82,16 +83,16 @@ export const styles = StyleSheet.create({
   titlePrincipal: {
     fontSize: 17,
     fontWeight: "bold",
-    color: "blacks",
+    color: TERTARY_COLOR,
     alignSelf: "center",
   },
   title1: {
-    color: "black",
+    color: TERTARY_COLOR,
     fontSize: 25,
     paddingHorizontal: 15,
     fontWeight: "bold",
     paddingVertical: 30,
-    backgroundColor: "#D1F8EF",
+    backgroundColor: PRIMARY_COLOR,
     textAlign: "left",
     justifyContent: "center",
   },
@@ -100,12 +101,12 @@ export const styles = StyleSheet.create({
   },
   titleDescrption: {
     fontSize: 15,
-    color: "black",
+    color: TERTARY_COLOR,
     marginTop: 7,
     alignSelf: "center",
   },
   buttomForm: {
-    backgroundColor: "#D0F3F7",
+    backgroundColor: BUTTON_COLOR,
     paddingVertical: 10,
     paddingHorizontal: 10,
     alignItems: "center",
@@ -129,5 +130,36 @@ export const styles = StyleSheet.create({
     position: "absolute",
     right: 20,
     bottom: 25,
+  },
+  //estilos con nombre sin necesidad de renombrar
+  containerCard: {
+    flex: 1,
+    width: 160,
+    justifyContent: "center",
+    alignItems: "center",
+    padding: 20,
+    shadowColor: "#000",
+    shadowOpacity: 0.25,
+    shadowRadius: 2.7,
+    borderWidth: 1,
+    borderColor: PRIMARY_COLOR,
+    borderStyle: "solid",
+    marginBottom: 15,
+    elevation: 2,
+    marginRight: 5,
+  },
+  cardImage: {
+    height: 100,
+    width: 100,
+  },
+  titleCard: {
+    fontSize: 15,
+    fontWeight: "bold",
+    color: TERTARY_COLOR,
+  },
+  containerIcon: {
+    flex: 1,
+    marginTop: 15,
+    alignSelf: "flex-end",
   },
 });

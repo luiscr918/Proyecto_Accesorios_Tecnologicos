@@ -3,7 +3,7 @@ import { SignIn } from '../screens/SignIn';
 import { SignUp } from '../screens/SignUp';
 import { StyleSheet } from 'react-native';
 import { useState } from 'react';
-import Home from '../screens/Home';
+import Home from '../screens/home/Home';
 //Interface de usuarios
 export interface User {
   id: number,
@@ -44,7 +44,10 @@ export const StackNavigator = () => {
         options={{ headerShown: false }}
         children={() => <SignUp users={usersManager} addUsers={addUsers} />} />
 
-      <Stack.Screen name="Home" component={Home} />
+      <Stack.Screen 
+      options={{headerShown:false}}
+      name="Home" 
+      component={Home} />
     </Stack.Navigator>
   );
 }
