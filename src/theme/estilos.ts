@@ -1,5 +1,10 @@
 import { StyleSheet, ImageBackground } from "react-native";
-import { BUTTON_COLOR, PRIMARY_COLOR, SECONDARY_COLOR, TERTARY_COLOR } from "./defaultColors";
+import {
+  BUTTON_COLOR,
+  PRIMARY_COLOR,
+  SECONDARY_COLOR,
+  TERTARY_COLOR,
+} from "./defaultColors";
 
 export const styles = StyleSheet.create({
   background: {
@@ -150,7 +155,8 @@ export const styles = StyleSheet.create({
   },
   cardImage: {
     height: 100,
-    width: 100,
+    width: 75,
+    
   },
   titleCard: {
     fontSize: 15,
@@ -161,5 +167,73 @@ export const styles = StyleSheet.create({
     flex: 1,
     marginTop: 15,
     alignSelf: "flex-end",
+    elevation:4
+  },
+  containerModal: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "rgba(0,0,0,0.5)",
+  },
+  modalProduct: {
+    padding: 15,
+    backgroundColor: SECONDARY_COLOR,
+    borderRadius: 10,
+    shadowColor: '"#000',
+    shadowOpacity: 0.25,
+    shadowRadius: 4,
+    elevation: 5,
+  },
+  headerModal: {
+    flexDirection: "row",
+    borderBottomColor: "#ccc",
+    borderBottomWidth: 1,
+    borderStyle: "solid",
+    padding: 10,
+  },
+  titleHeaderModel: {
+    fontSize: 18,
+    fontWeight: "bold",
+    color: TERTARY_COLOR,
+  },
+  imageModal: {
+    width: 150,
+    height: 200,
+  },
+  containerQuantity: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  buttonQuantity: {
+    backgroundColor: BUTTON_COLOR,
+    height: 60,
+    width: 60,
+    borderRadius: 100,
+    margin: 5,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  buttonQuantityText: {
+    color: '#C7AFF7',
+    fontSize: 20,
+    fontWeight: "bold",
+  },
+  textQuantity: {
+    fontSize: 18,
+    color: TERTARY_COLOR,
+    fontWeight: "bold",
+    margin: 10,
+  },
+  buttonAddCar: {
+    backgroundColor: BUTTON_COLOR,
+    marginTop: 15,
+    alignItems: "center",
+    paddingVertical: 10,
+    borderRadius: 5,
+  },
+  buttonAddCarText: {
+    color: '#C7AFF7',
+    fontWeight: "bold",
   },
 });
