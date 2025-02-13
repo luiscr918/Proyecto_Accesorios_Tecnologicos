@@ -236,4 +236,58 @@ export const styles = StyleSheet.create({
     color: '#C7AFF7',
     fontWeight: "bold",
   },
+  containerTotal: {
+    alignItems: 'flex-end',
+    marginVertical: 15
+},
+textTotal: {
+  fontWeight: 'bold',
+  paddingHorizontal: 10,
+  fontSize: 18
+},
+buttonAddCart: {
+  backgroundColor: PRIMARY_COLOR,
+  marginTop: 15,
+  alignItems: 'center',
+  paddingVertical: 10,
+  borderRadius: 5
+},
+buttonAddCartText: {
+  color: SECONDARY_COLOR,
+  fontWeight: 'bold'
+},
+headerTableCar: {
+  flexDirection: 'row',
+  justifyContent: 'space-between',
+},
+textHeaderTable: {
+  fontWeight: 'bold',
+  color: TERTARY_COLOR
+},
+titleHeaderModal: {
+  fontSize: 17,
+  fontWeight: 'bold',
+  color: TERTARY_COLOR
+},
+textIconCar: {
+  backgroundColor: SECONDARY_COLOR,
+  paddingHorizontal: 5,
+  borderRadius: 10,
+  fontSize: 13,
+  fontWeight: 'bold',
+},
+headerProducts: {
+  flexDirection: 'row',
+  alignItems: 'center',
+},
+imageCard: {
+  width: 70,
+  height: 70,
+},
+textStock: {
+  fontSize: 18,
+  fontWeight: 'bold',
+  color: '#801f1f',
+  textAlign: 'center'
+},
 });
