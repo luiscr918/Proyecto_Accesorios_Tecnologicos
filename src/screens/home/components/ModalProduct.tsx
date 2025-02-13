@@ -7,14 +7,28 @@ import { styles } from '../../../theme/estilos';
 interface Props {
     product: Product;
     isVisible: boolean;
+    handleChangeStock: (id: number, quantity: number) => void;
     setShowModalProduct: () => void
 }
-export const ModalProduct = ({ product, isVisible, setShowModalProduct }: Props) => {
+export const ModalProduct = ({ product, isVisible, setShowModalProduct,handleChangeStock }: Props) => {
     const { name, pathImage, price, stock } = product;
+    const closeModal =()=>{
+        setShowModalProduct();
+        //Modificar  el valor del contador
+        setQuantity(1);
+    }
     //dimensiones de pantalla
     const { width } = useWindowDimensions();
     //hook useState para manejar la cantidad de productos
     const [quantity, setQuantity] = useState<number>(1);
+    const handleAddProduct=()=>{
+        //llamar función para actualizar stock
+        handleChangeStock(product.id, quantity);
+        //Cerrar el modal
+        closeModal();
+    }
+
+
     return (
         <Modal
             visible={isVisible}
@@ -27,17 +41,24 @@ export const ModalProduct = ({ product, isVisible, setShowModalProduct }: Props)
                     width: width * 0.85
                 }}>
                     <View style={styles.headerModal}>
-                        <Text style={styles.titleHeaderModel}>{name}- ${price.toFixed(2)}</Text>
+                        <Text style={{
+                            ...styles.titleHeaderModel,
+                            fontSize: 14
+                        }}>{name}-
+                            {'\n'}
+                            ${price.toFixed(2)}</Text>
                         <View style={{
                             ...styles.containerIcon,
-                            marginTop: 0,
-                            marginLeft: 15,
                             backgroundColor: 'red',
-                            maxWidth:25
+                            maxWidth: 30,
+                            padding: 5,
+                            position:'absolute',
+                            right:2,
+                            bottom:5
                         }}>
                             <Icon
                                 name='close'
-                                size={25}
+                                size={20}
                                 color={SECONDARY_COLOR}
                                 onPress={setShowModalProduct}
                             />
@@ -73,8 +94,11 @@ export const ModalProduct = ({ product, isVisible, setShowModalProduct }: Props)
                                     <Text style={styles.textQuantity}>Total: $ {(price * quantity).toFixed(2)}</Text>
                                 </View>
                                 <View>
-                                    <TouchableOpacity style={styles.buttonAddCar}>
+                                    <TouchableOpacity style={styles.buttonAddCar}
+                                    onPress={handleAddProduct}
+                                    >
                                         <Text style={styles.buttonAddCarText}>Agregar carrito</Text>
+
                                     </TouchableOpacity>
                                 </View>
                             </View>

@@ -84,6 +84,7 @@ export const styles = StyleSheet.create({
     borderTopRightRadius: 35,
     paddingTop: 40,
     paddingHorizontal: 35,
+    paddingBottom:70
   },
   titlePrincipal: {
     fontSize: 17,
@@ -139,24 +140,25 @@ export const styles = StyleSheet.create({
   //estilos con nombre sin necesidad de renombrar
   containerCard: {
     flex: 1,
-    width: 160,
+    width: 140,
     justifyContent: "center",
     alignItems: "center",
     padding: 20,
     shadowColor: "#000",
     shadowOpacity: 0.25,
-    shadowRadius: 2.7,
+    shadowRadius: 2.70,
     borderWidth: 1,
     borderColor: PRIMARY_COLOR,
     borderStyle: "solid",
-    marginBottom: 15,
+    marginBottom: 5,
     elevation: 2,
-    marginRight: 5,
+    marginHorizontal:3,
+  
   },
   cardImage: {
     height: 100,
     width: 75,
-    
+
   },
   titleCard: {
     fontSize: 15,
@@ -165,9 +167,10 @@ export const styles = StyleSheet.create({
   },
   containerIcon: {
     flex: 1,
-    marginTop: 15,
     alignSelf: "flex-end",
-    elevation:4
+    alignItems:'flex-end',
+    elevation: 4,
+    margin:5
   },
   containerModal: {
     flex: 1,
@@ -189,10 +192,10 @@ export const styles = StyleSheet.create({
     borderBottomColor: "#ccc",
     borderBottomWidth: 1,
     borderStyle: "solid",
-    padding: 10,
+    padding: 5,
   },
   titleHeaderModel: {
-    fontSize: 18,
+    fontSize: 17,
     fontWeight: "bold",
     color: TERTARY_COLOR,
   },
@@ -236,4 +239,59 @@ export const styles = StyleSheet.create({
     color: '#C7AFF7',
     fontWeight: "bold",
   },
+  headerProducts: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  textIconCar: {
+    backgroundColor: SECONDARY_COLOR,
+    paddingHorizontal: 5,
+    borderRadius: 10,
+    fontSize: 13,
+    fontWeight: 'bold',
+  },
+  titleHeaderModal: {
+    fontSize: 17,
+    fontWeight: 'bold',
+    color: TERTARY_COLOR
+  },
+  headerTableCar: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+  },
+  textHeaderTable: {
+    fontWeight: 'bold',
+    color: TERTARY_COLOR
+  },
+  containerTotal: {
+    alignItems: 'flex-end',
+    marginVertical: 15
+  },
+  textTotal: {
+    fontWeight: 'bold',
+    paddingHorizontal: 10,
+    fontSize: 18
+  },
+  buttonAddCart: {
+    backgroundColor: PRIMARY_COLOR,
+    marginTop: 15,
+    alignItems: 'center',
+    paddingVertical: 10,
+    borderRadius: 5
+  },
+  buttonAddCartText: {
+    color: SECONDARY_COLOR,
+    fontWeight: 'bold'
+  },
+  imageCard: {
+    width: 70,
+    height: 70,
+  },
+  textStock: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    color: '#801f1f',
+    textAlign: 'center'
+  },
+
 });
