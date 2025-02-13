@@ -7,6 +7,7 @@ import { BodyComponents } from '../components/BodyComponents';
 import { TitleComponents } from '../components/TitleComponents';
 import { ButtonComponent } from '../components/ButtonComponent';
 import { CommonActions, useNavigation } from '@react-navigation/native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 interface Props {
     users: User[];
@@ -16,18 +17,17 @@ interface Props {
 interface RegisterForm {
     username: string;
     email: string;
-    password: string;
     phoneNumber: string;
+    password: string;
     confPassword: string;
 }
 
 export const SignUp = ({ users, addUsers }: Props) => {
-    const { width } = useWindowDimensions();
     const [registerForm, setregisterForm] = useState<RegisterForm>({
         username: '',
         email: '',
-        password: '',
         phoneNumber: '',
+        password: '',
         confPassword: ''
     });
     const [hiddenPasword, setHiddenPassword] = useState<boolean>(true);
@@ -74,6 +74,10 @@ export const SignUp = ({ users, addUsers }: Props) => {
             Alert.alert('El número de teléfono debe tener 10 dígitos.');
             return;
         }
+        if (registerForm.password.length<6&& registerForm.confPassword.length<6) {
+            Alert.alert('Error', 'La contraseña debe contener mas de 6 digitos.');
+            return;
+        }
 
         if (registerForm.password !== registerForm.confPassword) {
             Alert.alert('Error', 'Las contraseñas no coinciden.');
@@ -84,32 +88,34 @@ export const SignUp = ({ users, addUsers }: Props) => {
             id: getIdNewUser(),
             name: registerForm.username,
             email: registerForm.email,
+            phoneNumber: registerForm.phoneNumber,
             password: registerForm.password,
             confPassword: registerForm.confPassword
         };
 
         addUsers(newUser);
         Alert.alert('Registro', 'Usuario registrado con éxito');
+        console.log(newUser);
         navigation.goBack();
     };
 
     return (
-        <View>
+        <SafeAreaView>
             <StatusBar />
             <TitleComponents title='TecZone' />
             <BodyComponents>
                 <Text style={styles.titlePrincipal}>
-                    Estas muy cerca, continúa.
+                    Se parte de nostros
                 </Text>
                 <Text style={styles.titleDescrption}>
-                    Realiza tus compras de manera rápida y segura
+                    Realiza tus compras de manera rápida y segura en la mejor tienda de tecnología.
                 </Text>
                 <KeyboardAvoidingView behavior="height">
                     <ScrollView
                         contentContainerStyle={styles.container}
                         keyboardShouldPersistTaps="handled"
                     >
-                        <View style={[styles.containerForm, { width: width * 0.9, maxWidth: 400, alignSelf: 'center' }]}>
+                        <View style={styles.containerForm}>
                             <InputComponent
                                 placeholder='Nombre'
                                 keyboardType='default'
@@ -133,25 +139,23 @@ export const SignUp = ({ users, addUsers }: Props) => {
                                 placeholder="Contraseña"
                                 keyboardType='default'
                                 handleChange={handleChange}
-                                isPassword={hiddenPasword}
                                 name='password'
                             />
                             <InputComponent
                                 placeholder="Confirma contraseña"
                                 keyboardType='default'
                                 handleChange={handleChange}
-                                isPassword={hiddenPasword}
                                 name='confPassword'
                             />
-                            <ButtonComponent title='Registrar' handleSendInfor={handleRegister} />
-                            <TouchableOpacity style={styles.register} onPress={() => navigation.dispatch(CommonActions.navigate({ name: 'SignIn' }))}>
-                                <Text style={styles.sub}>¿Ya tienes una cuenta? Inicia Sesión aquí</Text>
-                            </TouchableOpacity>
                         </View>
+                        <ButtonComponent title='Registrar' handleSendInfor={handleRegister} />
+                        <TouchableOpacity style={styles.register} onPress={() => navigation.dispatch(CommonActions.navigate({ name: 'SignIn' }))}>
+                            <Text style={styles.sub}>¿Ya tienes una cuenta? Inicia Sesión aquí</Text>
+                        </TouchableOpacity>
                     </ScrollView>
                 </KeyboardAvoidingView>
             </BodyComponents>
-        </View>
+        </SafeAreaView>
     );
 };
 
