@@ -89,7 +89,7 @@ const Home = () => {
         </View>
         <BodyComponents>
           <FlatList
-            data={products}
+            data={productsState}
             renderItem={({ item }) => <CardComponent product={item} handleChangeStock={handleChangeStock} />}
             keyExtractor={item => item.id.toString()}
             numColumns={2}
