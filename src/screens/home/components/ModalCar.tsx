@@ -9,10 +9,20 @@ interface Props {
     isVisible: boolean;
     carProducts: CardProduct[];
     setShowModalCar: () => void;
+    reset:()=>void;
 }
 
-export const ModalCar = ({ isVisible, carProducts, setShowModalCar }: Props) => {
+export const ModalCar = ({ isVisible, carProducts, setShowModalCar,reset }: Props) => {
     const { width } = useWindowDimensions();
+    //cerrar modal al dar click boton comprar
+    const closeModal = ( ) =>{
+        reset()
+        setShowModalCar()
+    }
+
+   
+
+
 
     //Función para calcular el total de la compra
     const totalPay = (): number => {
@@ -87,7 +97,9 @@ export const ModalCar = ({ isVisible, carProducts, setShowModalCar }: Props) => 
                         </Text>
                     </View>
                     <View>
-                        <TouchableOpacity style={styles.buttonAddCart}>
+                        <TouchableOpacity style={styles.buttonAddCart}
+                        onPress={closeModal}
+                        >
                             <Text style={{...styles.buttonAddCartText,
                                 color:TERTARY_COLOR
                             }}>Comprar</Text>

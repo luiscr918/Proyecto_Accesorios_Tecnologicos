@@ -8,7 +8,7 @@ interface Props {
     product: Product;
     isVisible: boolean;
     handleChangeStock: (id: number, quantity: number) => void;
-    setShowModalProduct: () => void
+    setShowModalProduct: () => void;
 }
 export const ModalProduct = ({ product, isVisible, setShowModalProduct,handleChangeStock }: Props) => {
     const { name, pathImage, price, stock } = product;

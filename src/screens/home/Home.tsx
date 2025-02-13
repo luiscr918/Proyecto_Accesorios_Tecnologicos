@@ -68,7 +68,11 @@ const Home = () => {
       total: product.price * quantity
     }
     setCarProducts([...carProducts, newProduct])
+  } 
+  const reset=()=>{
+    setCarProducts([]);
   }
+
   return (
     <SafeAreaView>
       <View>
@@ -98,8 +102,10 @@ const Home = () => {
         </BodyComponents>
       </View>
       <ModalCar isVisible={showModalCar}
+      reset={reset}
         carProducts={carProducts}
-        setShowModalCar={() => setShowModalCar(!showModalCar)} />
+        setShowModalCar={() => setShowModalCar(!showModalCar)}
+ />
     </SafeAreaView>
   )
 }
