@@ -9,18 +9,18 @@ interface Props {
     isVisible: boolean;
     carProducts: CardProduct[];
     setShowModalCar: () => void;
-    reset:()=>void;
+    reset: () => void;
 }
 
-export const ModalCar = ({ isVisible, carProducts, setShowModalCar,reset }: Props) => {
+export const ModalCar = ({ isVisible, carProducts, setShowModalCar, reset }: Props) => {
     const { width } = useWindowDimensions();
     //cerrar modal al dar click boton comprar
-    const closeModal = ( ) =>{
+    const closeModal = () => {
         reset()
         setShowModalCar()
     }
 
-   
+
 
 
 
@@ -45,12 +45,13 @@ export const ModalCar = ({ isVisible, carProducts, setShowModalCar,reset }: Prop
                         <Text style={styles.titleHeaderModal}>
                             Mis Productos
                         </Text>
-                        <View style={{...styles.containerIcon,
-                            backgroundColor:'red',
+                        <View style={{
+                            ...styles.containerIcon,
+                            backgroundColor: 'red',
                             maxWidth: 25,
-                            position:'absolute',
-                            right:2,
-                            bottom:5
+                            position: 'absolute',
+                            right: 2,
+                            bottom: 5
                         }}>
                             <Icon
                                 name='cancel'
@@ -59,52 +60,61 @@ export const ModalCar = ({ isVisible, carProducts, setShowModalCar,reset }: Prop
                                 onPress={setShowModalCar} />
                         </View>
                     </View>
-                    <View style={styles.headerTableCar}>
-                        <Text style={styles.textHeaderTable}>Producto</Text>
-                        <View style={{ flexDirection: 'row' }}>
-                            <Text style={{
-                                ...styles.textHeaderTable,
-                                marginHorizontal: 10
-                            }}>Precio</Text>
-                            <Text style={styles.textHeaderTable}>Cantidad</Text>
-                            <Text style={{
-                                ...styles.textHeaderTable,
-                                marginHorizontal: 10
-                            }}>Total</Text>
+
+                    {carProducts.length === 0 ? (
+                        <View style={{ alignItems: 'center', padding: 10 }}>
+                            <Text style={{ fontSize: 18, color: TERTARY_COLOR }}>No hay productos en el carrito.</Text>
                         </View>
-                    </View>
-                    <FlatList
-                        data={carProducts}
-                        renderItem={({ item }) =>
+                    ) : (
+                        <>
                             <View style={styles.headerTableCar}>
-                                <Text>{item.name}</Text>
+                                <Text style={styles.textHeaderTable}>Producto</Text>
                                 <View style={{ flexDirection: 'row' }}>
-                                    <Text style={{ marginHorizontal: 10 }}>
-                                        ${item.price.toFixed(2)}
-                                    </Text>
-                                    <Text style={{ paddingHorizontal: 25 }}>
-                                        {item.quantity}
-                                    </Text>
-                                    <Text style={{ marginHorizontal: 10 }}>
-                                        ${item.total.toFixed(2)}
-                                    </Text>
+                                    <Text style={{
+                                        ...styles.textHeaderTable,
+                                        marginHorizontal: 10
+                                    }}>Precio</Text>
+                                    <Text style={styles.textHeaderTable}>Cantidad</Text>
+                                    <Text style={{
+                                        ...styles.textHeaderTable,
+                                        marginHorizontal: 10
+                                    }}>Total</Text>
                                 </View>
-                            </View>}
-                        keyExtractor={item => item.id.toString()} />
-                    <View style={styles.containerTotal}>
-                        <Text style={styles.textTotal}>
-                            Total pagar: ${totalPay().toFixed(2)}
-                        </Text>
-                    </View>
-                    <View>
-                        <TouchableOpacity style={styles.buttonAddCart}
-                        onPress={closeModal}
-                        >
-                            <Text style={{...styles.buttonAddCartText,
-                                color:TERTARY_COLOR
-                            }}>Comprar</Text>
-                        </TouchableOpacity>
-                    </View>
+                            </View>
+                            <FlatList
+                                data={carProducts}
+                                renderItem={({ item }) => (
+                                    <View style={styles.headerTableCar}>
+                                        <Text>{item.name}</Text>
+                                        <View style={{ flexDirection: 'row' }}>
+                                            <Text style={{ marginHorizontal: 10 }}>
+                                                ${item.price.toFixed(2)}
+                                            </Text>
+                                            <Text style={{ paddingHorizontal: 25 }}>
+                                                {item.quantity}
+                                            </Text>
+                                            <Text style={{ marginHorizontal: 10 }}>
+                                                ${item.total.toFixed(2)}
+                                            </Text>
+                                        </View>
+                                    </View>
+                                )}
+                                keyExtractor={item => item.id.toString()} />
+                            <View style={styles.containerTotal}>
+                                <Text style={styles.textTotal}>
+                                    Total a pagar: ${totalPay().toFixed(2)}
+                                </Text>
+                            </View>
+                            <View>
+                                <TouchableOpacity style={styles.buttonAddCart} onPress={closeModal}>
+                                    <Text style={{
+                                        ...styles.buttonAddCartText,
+                                        color: TERTARY_COLOR
+                                    }}>Comprar</Text>
+                                </TouchableOpacity>
+                            </View>
+                        </>
+                    )}
                 </View>
             </View>
         </Modal>
