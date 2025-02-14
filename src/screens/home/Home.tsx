@@ -95,7 +95,11 @@ const Home = () => {
         <View style={styles.headerProducts}>
           <View style={{
             ...styles.containerIcon,
-            paddingHorizontal: 30
+            paddingHorizontal: 30,
+            position:'absolute',
+            right:0,
+            bottom:20
+            
           }}>
             <Text style={styles.textIconCar}>
               {carProducts.length}
