@@ -56,6 +56,7 @@ const Home = () => {
     setProductsState(updateStock);
     addProductCar(id, quantity);
   }
+
   const addProductCar = (id: number, quantity: number): void => {
     const product = productsState.find(product => product.id === id);
     if (!product)
@@ -68,8 +69,8 @@ const Home = () => {
       total: product.price * quantity
     }
     setCarProducts([...carProducts, newProduct])
-  } 
-  const reset=()=>{
+  }
+  const reset = () => {
     setCarProducts([]);
   }
 
@@ -102,10 +103,10 @@ const Home = () => {
         </BodyComponents>
       </View>
       <ModalCar isVisible={showModalCar}
-      reset={reset}
+        reset={reset}
         carProducts={carProducts}
         setShowModalCar={() => setShowModalCar(!showModalCar)}
- />
+      />
     </SafeAreaView>
   )
 }

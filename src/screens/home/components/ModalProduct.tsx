@@ -24,6 +24,7 @@ export const ModalProduct = ({ product, isVisible, setShowModalProduct,handleCha
     const handleAddProduct=()=>{
         //llamar función para actualizar stock
         handleChangeStock(product.id, quantity);
+        
         //Cerrar el modal
         closeModal();
     }

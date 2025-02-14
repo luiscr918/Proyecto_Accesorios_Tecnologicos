@@ -19,11 +19,6 @@ export const ModalCar = ({ isVisible, carProducts, setShowModalCar, reset }: Pro
         reset()
         setShowModalCar()
     }
-
-
-
-
-
     //Función para calcular el total de la compra
     const totalPay = (): number => {
         //acumulador
