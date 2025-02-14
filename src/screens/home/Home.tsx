@@ -67,7 +67,8 @@ const Home = () => {
     if (existingProduct) {
       // Actualizar la cantidad del producto existente
       const updatedCarProducts = carProducts.map(item =>
-        item.id === id ? { ...item, quantity: item.quantity + quantity, total: (item.quantity + quantity) * item.price }
+        item.id === id
+          ? { ...item, quantity: item.quantity + quantity, total: (item.quantity + quantity) * item.price }
           : item
       );
       setCarProducts(updatedCarProducts);
