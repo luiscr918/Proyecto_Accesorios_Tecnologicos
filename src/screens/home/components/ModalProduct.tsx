@@ -10,9 +10,9 @@ interface Props {
     handleChangeStock: (id: number, quantity: number) => void;
     setShowModalProduct: () => void;
 }
-export const ModalProduct = ({ product, isVisible, setShowModalProduct,handleChangeStock }: Props) => {
-    const { name, pathImage, price, stock } = product;
-    const closeModal =()=>{
+export const ModalProduct = ({ product, isVisible, setShowModalProduct, handleChangeStock }: Props) => {
+    const { name, pathImage, price, stock,description } = product;
+    const closeModal = () => {
         setShowModalProduct();
         //Modificar  el valor del contador
         setQuantity(1);
@@ -21,10 +21,10 @@ export const ModalProduct = ({ product, isVisible, setShowModalProduct,handleCha
     const { width } = useWindowDimensions();
     //hook useState para manejar la cantidad de productos
     const [quantity, setQuantity] = useState<number>(1);
-    const handleAddProduct=()=>{
+    const handleAddProduct = () => {
         //llamar función para actualizar stock
         handleChangeStock(product.id, quantity);
-        
+
         //Cerrar el modal
         closeModal();
     }
@@ -53,9 +53,9 @@ export const ModalProduct = ({ product, isVisible, setShowModalProduct,handleCha
                             backgroundColor: 'red',
                             maxWidth: 30,
                             padding: 5,
-                            position:'absolute',
-                            right:2,
-                            bottom:5
+                            position: 'absolute',
+                            right: 2,
+                            bottom: 5
                         }}>
                             <Icon
                                 name='close'
@@ -73,9 +73,12 @@ export const ModalProduct = ({ product, isVisible, setShowModalProduct,handleCha
                     </View>
                     {
                         (stock === 0)
-                            ? <Text>Producto Agotado</Text>
+                            ? <Text style={styles.textWarning}>Producto Agotado</Text>
                             :
                             <View>
+                                <View style={styles.cotainerDesciptionProduct}>
+                                    <Text style={styles.textDescriptionProduct}>{description}</Text>
+                                </View>
                                 <View style={styles.containerQuantity}>
                                     <TouchableOpacity style={styles.buttonQuantity}
                                         onPress={() => setQuantity(quantity - 1)}
@@ -96,7 +99,7 @@ export const ModalProduct = ({ product, isVisible, setShowModalProduct,handleCha
                                 </View>
                                 <View>
                                     <TouchableOpacity style={styles.buttonAddCar}
-                                    onPress={handleAddProduct}
+                                        onPress={handleAddProduct}
                                     >
                                         <Text style={styles.buttonAddCarText}>Agregar carrito</Text>
 

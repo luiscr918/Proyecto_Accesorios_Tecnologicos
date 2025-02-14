@@ -56,68 +56,70 @@ export const ModalCar = ({ isVisible, carProducts, setShowModalCar, reset }: Pro
                         </View>
                     </View>
 
-                    {carProducts.length === 0 ? (
-                        <View style={{ alignItems: 'center', padding: 10 }}>
-                            <Text style={{ fontSize: 18, color: TERTARY_COLOR }}>No hay productos en el carrito.</Text>
-                        </View>
-                    ) : (
-                        <>
-                            <View style={styles.headerTableCar}>
-                                <View style={{ maxWidth: 100 }}>
-                                    <Text style={styles.textHeaderTable}>Producto</Text>
-                                </View>
-                                <View style={{ flexDirection: 'row' }}>
-                                    <View style={{alignSelf:'flex-start'}}>
-                                    <Text style={{
-                                        ...styles.textHeaderTable,
-                                        marginHorizontal: 10,
-                                    }}>Precio</Text>
-                                    </View>
-                                    <Text style={styles.textHeaderTable}>Cantidad</Text>
-                                    <Text style={{
-                                        ...styles.textHeaderTable,
-                                        marginHorizontal: 10
-                                    }}>Total</Text>
-                                </View>
+                    {carProducts.length === 0
+                        ? (
+                            <View style={{ alignItems: 'center', padding: 10 }}>
+                                <Text style={styles.textWarning}>No hay productos en el carrito.</Text>
                             </View>
-                            <FlatList
-                                data={carProducts}
-                                renderItem={({ item }) => (
-                                    <View style={styles.headerTableCar}>
-                                        <View style={{ maxWidth: 100 ,justifyContent:'center'}}>
-                                            <Text >{item.name}</Text>
+                        )
+                        : (
+                            <>
+                                <View style={styles.headerTableCar}>
+                                    <View style={{ maxWidth: 100 }}>
+                                        <Text style={styles.textHeaderTable}>Producto</Text>
+                                    </View>
+                                    <View style={{ flexDirection: 'row' }}>
+                                        <View style={{ alignSelf: 'flex-start' }}>
+                                            <Text style={{
+                                                ...styles.textHeaderTable,
+                                                marginHorizontal: 10,
+                                            }}>Precio</Text>
                                         </View>
-                                        <View style={{ flexDirection: 'row' }}>
-                                            <View style={{width:111}}>
-                                            <Text style={{ marginHorizontal: 10,padding:10 }}>
-                                                ${item.price.toFixed(2)}
-                                            </Text>
+                                        <Text style={styles.textHeaderTable}>Cantidad</Text>
+                                        <Text style={{
+                                            ...styles.textHeaderTable,
+                                            marginHorizontal: 10
+                                        }}>Total</Text>
+                                    </View>
+                                </View>
+                                <FlatList
+                                    data={carProducts}
+                                    renderItem={({ item }) => (
+                                        <View style={styles.headerTableCar}>
+                                            <View style={{ maxWidth: 100, justifyContent: 'center' }}>
+                                                <Text >{item.name}</Text>
                                             </View>
-                                            <Text style={{ padding:10  }}>
-                                                {item.quantity}
-                                            </Text>
-                                            <Text style={{ marginHorizontal: 10,padding:10}}>
-                                                ${item.total.toFixed(2)}
-                                            </Text>
+                                            <View style={{ flexDirection: 'row' }}>
+                                                <View style={{ width: 111 }}>
+                                                    <Text style={{ marginHorizontal: 10, padding: 10 }}>
+                                                        ${item.price.toFixed(2)}
+                                                    </Text>
+                                                </View>
+                                                <Text style={{ padding: 10 }}>
+                                                    {item.quantity}
+                                                </Text>
+                                                <Text style={{ marginHorizontal: 10, padding: 10 }}>
+                                                    ${item.total.toFixed(2)}
+                                                </Text>
+                                            </View>
                                         </View>
-                                    </View>
-                                )}
-                                keyExtractor={item => item.id.toString()} />
-                            <View style={styles.containerTotal}>
-                                <Text style={styles.textTotal}>
-                                    Total a pagar: ${totalPay().toFixed(2)}
-                                </Text>
-                            </View>
-                            <View>
-                                <TouchableOpacity style={styles.buttonAddCart} onPress={closeModal}>
-                                    <Text style={{
-                                        ...styles.buttonAddCartText,
-                                        color: TERTARY_COLOR
-                                    }}>Comprar</Text>
-                                </TouchableOpacity>
-                            </View>
-                        </>
-                    )}
+                                    )}
+                                    keyExtractor={item => item.id.toString()} />
+                                <View style={styles.containerTotal}>
+                                    <Text style={styles.textTotal}>
+                                        Total a pagar: ${totalPay().toFixed(2)}
+                                    </Text>
+                                </View>
+                                <View>
+                                    <TouchableOpacity style={styles.buttonAddCart} onPress={closeModal}>
+                                        <Text style={{
+                                            ...styles.buttonAddCartText,
+                                            color: TERTARY_COLOR
+                                        }}>Comprar</Text>
+                                    </TouchableOpacity>
+                                </View>
+                            </>
+                        )}
                 </View>
             </View>
         </Modal>

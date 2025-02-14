@@ -292,4 +292,17 @@ export const styles = StyleSheet.create({
     color: "#801f1f",
     textAlign: "center",
   },
+  cotainerDesciptionProduct:{
+    margin:10
+  },
+  textDescriptionProduct:{
+    textAlign:'center',
+    fontSize:15
+  },
+  textWarning:{
+    color:'red',
+    fontSize:18,
+    fontWeight:'bold',
+    textAlign:'center'
+  }
 });
