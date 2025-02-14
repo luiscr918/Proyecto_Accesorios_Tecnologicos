@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { FlatList, Text, View } from 'react-native'
+import { Button, FlatList, Text, View } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { CardComponent } from './components/CardComponent';
 import { TitleComponents } from '../../components/TitleComponents';
@@ -8,6 +8,8 @@ import { styles } from '../../theme/estilos';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import { SECONDARY_COLOR, TERTARY_COLOR } from '../../theme/defaultColors';
 import { ModalCar } from './components/ModalCar';
+import { CommonActions, useNavigation } from '@react-navigation/native';
+import { ProductosCar } from '../ProductosCar';
 //creo interfaz de mis productos
 export interface Product {
   id: number;
@@ -45,7 +47,8 @@ const Home = () => {
   ]
   const [productsState, setProductsState] = useState<Product[]>(products);
 
-  const [carProducts, setCarProducts] = useState<CardProduct[]>([]);
+ const [carProducts, setCarProducts] = useState<CardProduct[]>([]);
+
 
   const [showModalCar, setShowModalCar] = useState<boolean>(false);
 
@@ -87,10 +90,12 @@ const Home = () => {
   const reset = () => {
     setCarProducts([]);
   }
+  const navigation=useNavigation();
 
   return (
     <SafeAreaView>
       <View>
+        {/* header de la aplicacion */}
         <TitleComponents title='Products' />
         <View style={styles.headerProducts}>
           <View style={{
@@ -107,9 +112,11 @@ const Home = () => {
             <Icon name='shopping-cart'
               size={30}
               color={TERTARY_COLOR}
-              onPress={() => setShowModalCar(!showModalCar)} />
+              onPress={() => navigation.dispatch(CommonActions.navigate({name: 'Carrito', params: { carProducts }}))} />
           </View>
         </View>
+
+       {/*  //lista de productos */}
         <BodyComponents>
           <FlatList
             data={productsState}

@@ -10,6 +10,7 @@ import { ModalProduct } from './ModalProduct'
 interface Props {
     product: Product,
     handleChangeStock: (id: number, quantity: number) => void;
+
 }
 export const CardComponent = ({ product,handleChangeStock }: Props) => {
     const { name, pathImage, price } = product;
