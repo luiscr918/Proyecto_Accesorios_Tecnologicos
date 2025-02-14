@@ -94,13 +94,11 @@ export const styles = StyleSheet.create({
   },
   title1: {
     color: TERTARY_COLOR,
-    fontSize: 25,
-    paddingHorizontal: 15,
+    fontSize: 23,
     fontWeight: "bold",
-    paddingVertical: 30,
     backgroundColor: PRIMARY_COLOR,
     textAlign: "left",
-    justifyContent: "center",
+    paddingVertical: 25,
   },
   containerForm: {
     marginBottom: 10,
@@ -292,17 +290,23 @@ export const styles = StyleSheet.create({
     color: "#801f1f",
     textAlign: "center",
   },
-  cotainerDesciptionProduct:{
-    margin:10
+  cotainerDesciptionProduct: {
+    margin: 10,
   },
-  textDescriptionProduct:{
-    textAlign:'center',
-    fontSize:15
+  textDescriptionProduct: {
+    textAlign: "center",
+    fontSize: 15,
   },
-  textWarning:{
-    color:'red',
-    fontSize:18,
-    fontWeight:'bold',
-    textAlign:'center'
-  }
+  textWarning: {
+    color: "red",
+    fontSize: 18,
+    fontWeight: "bold",
+    textAlign: "center",
+  },
+  logoEmpresa: {
+    height: 30,
+    width: 100,
+    marginRight:20,
+    justifyContent:'center'
+  },
 });
