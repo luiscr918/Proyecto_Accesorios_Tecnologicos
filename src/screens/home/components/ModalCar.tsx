@@ -49,7 +49,7 @@ export const ModalCar = ({ isVisible, carProducts, setShowModalCar, reset }: Pro
                             bottom: 5
                         }}>
                             <Icon
-                                name='cancel'
+                                name='close'
                                 size={25}
                                 color={SECONDARY_COLOR}
                                 onPress={setShowModalCar} />
