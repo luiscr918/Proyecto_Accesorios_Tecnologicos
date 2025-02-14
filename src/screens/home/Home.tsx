@@ -61,14 +61,27 @@ const Home = () => {
     const product = productsState.find(product => product.id === id);
     if (!product)
       return;
-    const newProduct: CardProduct = {
-      id: product.id,
-      name: product.name,
-      price: product.price,
-      quantity: quantity,
-      total: product.price * quantity
+
+    const existingProduct = carProducts.find(item => item.id === id);
+
+    if (existingProduct) {
+      // Actualizar la cantidad del producto existente
+      const updatedCarProducts = carProducts.map(item =>
+        item.id === id ? { ...item, quantity: item.quantity + quantity, total: (item.quantity + quantity) * item.price }
+          : item
+      );
+      setCarProducts(updatedCarProducts);
+    } else {
+      // Agregar el nuevo producto al carrito
+      const newProduct: CardProduct = {
+        id: product.id,
+        name: product.name,
+        price: product.price,
+        quantity: quantity,
+        total: product.price * quantity
+      }
+      setCarProducts([...carProducts, newProduct]);
     }
-    setCarProducts([...carProducts, newProduct])
   }
   const reset = () => {
     setCarProducts([]);
