@@ -15,34 +15,26 @@ export const TitleComponents = ({ title }: Props) => {
     //hook para navegar con el logito
     const navigation = useNavigation();
     return (
-        <View style={{ flexDirection: 'row', justifyContent: 'center' }}>
-            <Text style={(title == 'Welcome To TecZone')
-                ? ({
-                    ...styles.title1,
-                    height: height * 0.12,
-                    width: width,
-                    textAlign: 'center'
-                })
-                : ({
-                    ...styles.title1,
-                    height: height * 0.12,
-                    width: width
-                })
-            }
-
-            >
-                <View style={{ justifyContent: 'center', marginTop: 35 }}>
-                    <TouchableOpacity
-                        onPress={() => navigation.dispatch(CommonActions.navigate({ name: 'SignIn' }))}
-                    >
-                        <Image
-                            style={styles.logoEmpresa}
-                            source={require('../../assets/logoEmpresa.png')}
-                        />
-                    </TouchableOpacity>
-                </View>
-                {title}
-            </Text>
+        <View style={{
+            ...styles.title1Container,
+            height: height * 0.12,
+            width: width,
+        }}>
+            <View style={{ justifyContent: 'center' }}>
+                <TouchableOpacity
+                    onPress={() => navigation.dispatch(CommonActions.navigate({ name: 'SignIn' }))}
+                >
+                    <Image
+                        style={styles.logoEmpresa}
+                        source={require('../../assets/logoEmpresa.png')}
+                    />
+                </TouchableOpacity>
+            </View>
+            <View >
+                <Text style={styles.title1}>
+                    {title}
+                </Text>
+            </View>
         </View>
     )
 }

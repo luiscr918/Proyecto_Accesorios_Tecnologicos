@@ -96,9 +96,12 @@ export const styles = StyleSheet.create({
     color: TERTARY_COLOR,
     fontSize: 23,
     fontWeight: "bold",
+  },
+  title1Container: {
     backgroundColor: PRIMARY_COLOR,
     textAlign: "left",
     paddingVertical: 25,
+    flexDirection: "row",
   },
   containerForm: {
     marginBottom: 10,
@@ -306,7 +309,6 @@ export const styles = StyleSheet.create({
   logoEmpresa: {
     height: 30,
     width: 100,
-    marginRight:20,
-    justifyContent:'center'
+    marginRight: 20,
   },
 });
